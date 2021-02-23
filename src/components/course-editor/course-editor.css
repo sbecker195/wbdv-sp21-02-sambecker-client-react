@@ -1,0 +1,20 @@
+.nav-pills .nav-link {
+    background-color: #303030;
+    font-weight: bold;
+    color: white;
+
+}
+
+.editor-topics{
+    margin: 5px;
+}
+
+.editor-list{
+    margin: 5px;
+    background: #282828;
+    color: white;
+}
+
+.editor-modules{
+    padding-bottom: 100%;
+}
