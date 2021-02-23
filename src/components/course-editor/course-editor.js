@@ -5,7 +5,7 @@ const CourseEditor = ({history}) => {
   return (
       <div class="container-fluid">
           <div class="row">
-              <div class="col-4 bg-dark editor-modules">
+              <div class="col-4 bg-light editor-modules">
                       <span>
                         <i className='fas fa-arrow-left fa-2x wbdv-close-editor-button wbdv-clickable'
                            onClick={() => history.goBack()}/>
