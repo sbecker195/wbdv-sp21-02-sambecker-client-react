@@ -4,15 +4,15 @@ import {Link} from 'react-router-dom';
 class CourseRow extends React.Component {
 
   state = {
-    name: this.props.course.name || '',
+    title: this.props.course.title || '',
     editing: false
   }
 
-  saveName(course) {
+  saveTitle(course) {
     this.setState((prev) => ({...prev, editing: false}))
     const newCourse = {
       ...course,
-      name: this.state.name
+      title: this.state.title
     }
     this.props.updateCourse(newCourse);
   }
@@ -21,11 +21,11 @@ class CourseRow extends React.Component {
     return (
       <tr>
         <td>
-          { !this.state.editing && <Link to='/editor'>{this.props.course.name}</Link>}
+          { !this.state.editing && <Link to='/editor'>{this.props.course.title}</Link>}
           { this.state.editing && <input onChange = {
-              (event) => this.setState({name: event.target.value})
+              (event) => this.setState({title: event.target.value})
             }
-                value={this.state.name}
+                value={this.state.title}
                 className='form-control'/>
           }
         </td>
@@ -34,7 +34,7 @@ class CourseRow extends React.Component {
         <td className='text-right'>
           { this.state.editing &&
             <i className='wbdv-clickable fas fa-check wbdv-save-btn'
-               onClick={() => this.saveName(this.props.course)}/> }
+               onClick={() => this.saveTitle(this.props.course)}/> }
           { this.state.editing && <i className='wbdv-clickable fas fa-times wbdv-delete-btn'
                onClick={() => this.props.deleteCourse(this.props.course)}/> }
           { !this.state.editing && <i className='wbdv-clickable fas fa-edit'

@@ -8,7 +8,7 @@ import courseService from "../services/course-service";
 class CourseManager extends React.Component {
   state = {
     courses: [],
-    courseName: '',
+    courseTitle: '',
     qwe: 123,
     sdf: 456
   }
@@ -38,7 +38,7 @@ class CourseManager extends React.Component {
 
   addCourse = () => {
     const newCourse = {
-      name: 'New Course' || this.state.courseName,
+      title: 'New Course' || this.state.courseTitle,
       owner: 'me',
       modified: 'Never'
     }
@@ -47,7 +47,7 @@ class CourseManager extends React.Component {
         this.setState((prevState) => ({
           ...prevState,
           courses: [...prevState.courses, updatedCourse],
-          courseName: '',
+          courseTitle: '',
         }))
       })
   }
@@ -76,8 +76,8 @@ class CourseManager extends React.Component {
             </div>
             <div className="col-8">
               <input className="form-control"
-                     onChange={(event) => this.setState({courseName: event.target.value})}
-                     value={this.state.courseName}/>
+                     onChange={(event) => this.setState({courseTitle: event.target.value})}
+                     value={this.state.courseTitle}/>
             </div>
             <div className="col-1 float">
               <i className="wbdv-clickable fas fa-plus-circle fa-2x wbdv-create-btn"
