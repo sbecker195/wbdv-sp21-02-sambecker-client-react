@@ -9,7 +9,7 @@
 }
 
 .editor-list{
-    margin: 5px;
+    margin: 3px;
     background: #282828;
     color: white;
 }
@@ -19,13 +19,13 @@
 }
 
 .wbdv-return-from-editor {
-  margin: 15px
+    margin: 25px
 }
 
 .wbdv-course-title {
-  font-size: 22px;
+    font-size: 28px;
 }
 
 .wbdv-add-module {
-  margin: 12px;
+    margin: 15px;
 }
