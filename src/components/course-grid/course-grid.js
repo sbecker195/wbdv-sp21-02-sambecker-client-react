@@ -18,7 +18,7 @@ const CourseGrid = ({updateCourse, deleteCourse, courses}) => {
           <i className='fas fa-folder mr-2 fa-2x'/>
           <i className='fas fa-sort-alpha-up-alt mr-2 fa-2x'/>
           <Link to='/courses/table'>
-            <i className='fas fa-2x fa-table'/>
+            <i className='fas fa-2x fa-list'/>
           </Link>
         </div>
       </div>
