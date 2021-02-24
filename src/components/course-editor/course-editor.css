@@ -17,3 +17,15 @@
 .editor-modules{
     padding-bottom: 100%;
 }
+
+.wbdv-return-from-editor {
+  margin: 15px
+}
+
+.wbdv-course-title {
+  font-size: 22px;
+}
+
+.wbdv-add-module {
+  margin: 12px;
+}

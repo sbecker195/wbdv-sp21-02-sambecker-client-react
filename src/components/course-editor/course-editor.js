@@ -7,7 +7,7 @@ const CourseEditor = ({history}) => {
           <div class="row">
               <div class="col-4 bg-light editor-modules">
                       <span>
-                        <i className='fas fa-arrow-left fa-2x wbdv-close-editor-button wbdv-clickable'
+                        <i className='fas fa-arrow-left fa-2x wbdv-return-from-editor wbdv-clickable'
                            onClick={() => history.goBack()}/>
 
                            <span className='wbdv-course-title'>CS5610 - WebDev</span>
@@ -28,7 +28,7 @@ const CourseEditor = ({history}) => {
                       <li class="list-group-item editor-list">Module 7 - Mongo <i
                               class="float-right fas fa-times"></i></li>
                   </ul>
-                  <i className='fas fa-plus-circle fa-2x float-right wbdv-add-module-button'/>
+                  <i className='fas fa-plus-circle fa-2x float-right wbdv-add-module'/>
               </div>
         <div className='col-8'>
           <div className='wbdv-tabs-bar'>

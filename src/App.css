@@ -1,38 +1,36 @@
-.App {
-  text-align: center;
+.wbdv-navbar {
+  background-color: CornflowerBlue;
+  padding: 10px;
+  width: 100%;
+  z-index: 1;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.wbdv-navbar-title {
+  font-size: 20px;
+  margin-top: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.wbdv-create-float  {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.wbdv-clickable {
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.wbdv-create-btn {
+  color: red;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.wbdv-delete-btn {
+  color: red;
+  padding-right: 10px;
+}
+
+.wbdv-save-btn {
+  color: green;
+  padding-right: 10px
 }
