@@ -34,7 +34,7 @@ const CourseCard = ({updateCourse, deleteCourse, course}) => {
           <Link to="/editor" className="btn btn-primary">
             {course.title}
           </Link>
-          { !editing && <i className="wbdv-clickable fas fa-edit float-right" onClick={() => setEditing(true)}/>}
+          { !editing && <i className="wbdv-clickable fas fa-edit wbdv-edit-btn fa-2x float-right" onClick={() => setEditing(true)}/>}
           { editing && <i className="wbdv-clickable fas fa-check wbdv-save-btn float-right" onClick={() => saveTitle()}/>}
           { editing && <i className="wbdv-clickable fas fa-times wbdv-delete-btn float-right" onClick={() => deleteCourse(course)}/>}
         </div>

@@ -37,7 +37,7 @@ class CourseRow extends React.Component {
                onClick={() => this.saveTitle(this.props.course)}/> }
           { this.state.editing && <i className='wbdv-clickable fas fa-times wbdv-delete-btn'
                onClick={() => this.props.deleteCourse(this.props.course)}/> }
-          { !this.state.editing && <i className='wbdv-clickable fas fa-edit'
+          { !this.state.editing && <i className='wbdv-clickable fas fa-edit wbdv-edit-btn'
                onClick={() => this.setState((prev) => ({...prev, editing: true}))}/> }
         </td>
       </tr>
