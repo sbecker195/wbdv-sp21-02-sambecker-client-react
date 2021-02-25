@@ -7,10 +7,10 @@ const CourseGrid = ({updateCourse, deleteCourse, courses}) => {
     <div className='container-fluid'>
       <h2>Course Grid</h2>
       <div className='row justify-content-end'>
-        <div className='col-4 d-none d-md-block text-left'>
+        <div className='col-4 d-none font-weight-bold d-md-block text-left'>
           Recent Documents
         </div>
-        <div className='col-4 d-none d-md-block text-center'>
+        <div className='col-4 d-none font-weight-bold d-md-block text-center'>
           Owned by me
           <i className='fas fa-chevron-down'/>
         </div>

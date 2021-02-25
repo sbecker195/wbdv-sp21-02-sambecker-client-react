@@ -71,7 +71,7 @@ class CourseManager extends React.Component {
                 <i className="fas fa-bars fa-2x"/>
               </Link>
             </div>
-            <div className="col-2 d-none d-lg-block wbdv-navbar-title">
+            <div className="col-2 d-none font-weight-bold d-lg-block wbdv-navbar-title">
               Course Manager
             </div>
             <div className="col-8">

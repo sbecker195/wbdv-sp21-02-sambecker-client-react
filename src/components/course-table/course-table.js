@@ -13,7 +13,7 @@ class CourseTable
           <thead>
           <tr>
             <th>Title</th>
-            <th className='d-none d-md-table-cell'>Owned By</th>
+                <th className='d-none d-md-table-cell'>Owned By</th>
             <th className='d-none d-lg-table-cell'>Last Modified</th>
             <th>
               <div className='float-right'>
