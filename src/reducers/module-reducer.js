@@ -24,7 +24,7 @@ const moduleReducer = (state=initialState, action) => {
         ...state,
         modules: state.modules.map(module => {
           if (module._id === action.moduleToUpdate._id) {
-            return action.moduleToUpdate;
+            return action.moduleToUpdate
           } else {
             return module
           }
