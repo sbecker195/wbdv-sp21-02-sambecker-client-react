@@ -24,7 +24,7 @@ const lessonReducer = (state=initialState, action) => {
         ...state,
         lessons: state.lessons.map(lesson => {
           if (lesson._id === action.lessonToUpdate._id) {
-            return action.lessonToUpdate;
+            return action.lessonToUpdate
           } else {
             return lesson
           }
