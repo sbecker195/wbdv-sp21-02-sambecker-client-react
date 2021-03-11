@@ -1,11 +1,11 @@
 const LESSONS_URL = 'https://wbdv-generic-server.herokuapp.com/api/001063084/lessons';
 const TOPICS_URL = 'https://wbdv-generic-server.herokuapp.com/api/001063084/topicss';
 
-const findTopicsForLesson = (lessonId) =>
+export const findTopicsForLesson = (lessonId) =>
   fetch(`${LESSONS_URL}/${lessonId}/topics`)
     .then(response => response.json())
 
-const createTopic = (lessonId, topic) =>
+export const createTopic = (lessonId, topic) =>
   fetch(`${LESSONS_URL}/${lessonId}/topics`, {
     method: 'POST',
     body: JSON.stringify(topic),
@@ -15,17 +15,16 @@ const createTopic = (lessonId, topic) =>
   })
     .then(response => response.json());
 
-  const deleteTopic = (topicId) =>
-    fetch(`${TOPICS_URL}/${topicId}`, {
-      method: 'DELETE'
-    })
-     .then(response => response.json())
+export const deleteTopic = (topicId) =>
+  fetch(`${TOPICS_URL}/${topicId}`, {
+    method: 'DELETE'
+  }).then(response => response.json())
 
-const findTopic = (topicId) =>
+export const findTopic = (topicId) =>
   fetch(`${TOPICS_URL}/${topicId}`)
     .then(response => response.json());
 
-const updateTopic = (topicId, topic) =>
+export const updateTopic = (topicId, topic) =>
   fetch(`${TOPICS_URL}/${topicId}`, {
     method: 'PUT',
     body: JSON.stringify(topic),
@@ -39,8 +38,8 @@ const api = {
   createTopic,
   findTopicsForLesson,
   findTopic,
-  updateTopic,
   deleteTopic,
+  updateTopic
 }
 
 export default api
