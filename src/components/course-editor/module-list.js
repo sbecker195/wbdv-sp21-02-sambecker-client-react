@@ -5,14 +5,13 @@ import EditableItem from './editable-item';
 import moduleService from '../../services/module-service'
 import styles from './course-editor.css';
 
-const ModuleList = (
-    {
-         myModules = [],
-         createModule,
-         deleteModule,
-         updateModule,
-         findModulesForCourse
-    }) => {
+const ModuleList = ({
+                     myModules = [],
+                     createModule,
+                     deleteModule,
+                     updateModule,
+                     findModulesForCourse
+                    }) => {
 
     const {layout, courseId, moduleId} = useParams();
 
@@ -27,15 +26,15 @@ const ModuleList = (
         <ul className='list-group'>
           {
             myModules.map(module =>
-              <li className={`list-group-item ${module._id === moduleId ? 'active' : ''}`}
+              <li className={`list-group-item ${module._id === moduleId ? 'active':''}`}
                     key={module._id}>
                 <EditableItem
                       to={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
                       updateItem={updateModule}
                       deleteItem={deleteModule}
                       item={module}
-                      active={module._id === moduleId}
                       highlight={`${module._id === moduleId ? 'wbdv-highlighted-link':''}`}
+                      active={module._id === moduleId}
                 />
               </li>
             )

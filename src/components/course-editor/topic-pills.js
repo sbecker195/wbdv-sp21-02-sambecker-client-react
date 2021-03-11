@@ -18,21 +18,22 @@ const TopicPills = ({
     if (lessonId !== 'undefined' && typeof lessonId !== 'undefined') {
       findTopicsForLesson(lessonId);
     }
-  }, [moduleId, lessonId, topicId, findTopicsForLesson])
+  }, [moduleId, lessonId])
 
   return (
     <div>
       <ul className='nav nav-pills'>
         {
           myTopics.map(topic =>
-            <li className='nav-item' key={topic._id}>
+            <li className='nav-item'
+                key={topic._id}>
               <EditableItem
                 active={topic._id === topicId}
+                highlight={`${topic._id === topicId ? 'wbdv-highlighted-link':''}`}
                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
                 item={topic}
                 deleteItem={deleteTopic}
-                updateItem={updateTopic}
-                highlight={`${topic._id === topicId ? 'wbdv-highlighted-link' : ''}`}/>
+                updateItem={updateTopic}/>
             </li>
           )
         }

@@ -5,14 +5,13 @@ import EditableItem from './editable-item';
 import lessonService from '../../services/lesson-service'
 import styles from './course-editor.css';
 
-const LessonTabs = (
-    {
-          lessons = [],
-          findLessonsForModule,
-          createLesson,
-          deleteLesson,
-          updateLesson
-    }) => {
+const LessonTabs = ({
+                      lessons = [],
+                      findLessonsForModule,
+                      createLesson,
+                      deleteLesson,
+                      updateLesson
+                    }) => {
 
   const {layout, courseId, moduleId, lessonId} = useParams();
 
@@ -31,15 +30,16 @@ const LessonTabs = (
                 key={lesson._id}>
               <EditableItem
                 active={lesson._id === lessonId}
+                highlight={''}
                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                 item={lesson}
                 deleteItem={deleteLesson}
                 updateItem={updateLesson}
-                highlight={''}/>
+                />
             </li>
           )
         }
-        <li className='nav-item fas fa-plus fa-2x wbdv-clickable wbdv-add'
+        <li className='nav-item fas fa-plus fa-2x wbdv-add wbdv-clickable'
             key='add'
             onClick={() => createLesson(moduleId)}/>
       </ul>
