@@ -70,10 +70,9 @@ class CourseManager extends React.Component {
             <CourseManagerBar addCourse={this.addCourse}
                     nameOnChange={(event) => this.setState({courseTitle: event.target.value})}
                     courseTitle={this.state.courseTitle}/>
-            <CourseTable
-              updateCourse={this.updateCourse}
-              deleteCourse={this.deleteCourse}
-              courses={this.state.courses}
+            <CourseTable updateCourse={this.updateCourse}
+                         deleteCourse={this.deleteCourse}
+                         courses={this.state.courses}
             />
           </div>
         </Route>

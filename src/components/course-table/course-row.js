@@ -21,7 +21,11 @@ class CourseRow extends React.Component {
     return (
       <tr>
         <td>
-          { !this.state.editing && <Link to='/editor'>{this.props.course.title}</Link>}
+          {
+            !this.state.editing && <Link to={`/courses/table/edit/${this.props.course._id}`}>
+              {this.props.course.title}
+            </Link>
+          }
           { this.state.editing && <input onChange = {
               (event) => this.setState({title: event.target.value})
             }

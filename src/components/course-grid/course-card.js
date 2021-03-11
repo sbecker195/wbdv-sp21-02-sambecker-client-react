@@ -31,7 +31,7 @@ const CourseCard = ({updateCourse, deleteCourse, course}) => {
                              className='form-control'
           />}
           <p className="card-text">Course description here</p>
-          <Link to="/editor" className="btn btn-primary">
+          <Link to={`/courses/grid/edit/${course._id}`} className="btn btn-primary">
             {course.title}
           </Link>
           { !editing && <i className="wbdv-clickable fas fa-edit wbdv-edit-btn fa-2x float-right" onClick={() => setEditing(true)}/>}
