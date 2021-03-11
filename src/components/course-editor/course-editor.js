@@ -1,80 +1,54 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {Link, useParams} from 'react-router-dom';
+import moduleReducer from '../../reducers/module-reducer';
+import lessonReducer from '../../reducers/lesson-reducer';
+import topicReducer from '../../reducers/topic-reducer';
+import {combineReducers, createStore} from 'redux';
+import {Provider} from 'react-redux';
+import ModuleList from './module-list';
+import LessonTabs from './lesson-tabs';
+import TopicPills from './topic-pills';
+import courseService from '../../services/course-service';
 import styles from './course-editor.css';
 
-const CourseEditor = ({history}) => {
+const reducer = combineReducers({
+  moduleReducer: moduleReducer,
+  lessonReducer: lessonReducer,
+  topicReducer: topicReducer
+})
+
+const store = createStore(reducer);
+
+const CourseEditor = () => {
+  const { layout, courseId, moduleId, lessonId } = useParams();
+  const [courseTitle, setCourseTitle] = useState('')
+
+  useEffect(() => {
+    courseService.findCourseById(courseId)
+        .then((course) => {setCourseTitle(course.title);
+    })
+  }, [courseId])
+
   return (
-      <div class="container-fluid">
-          <div class="row">
-              <div class="col-4 bg-light editor-modules">
-                      <span>
-                        <i className='fas fa-arrow-left fa-2x wbdv-return-from-editor wbdv-clickable'
-                           onClick={() => history.goBack()}/>
-
-                           <span className='wbdv-course-title'>CS5610 - WebDev</span>
-                      </span>
-                  <ul class="list-group">
-                      <li class="list-group-item editor-list" >Module 1 - JQuery <i
-                              class="float-right fas fa-times"></i></li>
-                      <li class="list-group-item editor-list active">Module 2 - React <i
-                              class="float-right fas fa-times"></i></li>
-                      <li class="list-group-item editor-list">Module 3 - Redux <i
-                              class="float-right fas fa-times"></i></li>
-                      <li class="list-group-item editor-list">Module 4 - Native <i
-                              class="float-right fas fa-times"></i></li>
-                      <li class="list-group-item editor-list">Module 5 - Angular <i
-                              class="float-right fas fa-times"></i></li>
-                      <li class="list-group-item editor-list">Module 6 - Node <i
-                              class="float-right fas fa-times"></i></li>
-                      <li class="list-group-item editor-list">Module 7 - Mongo <i
-                              class="float-right fas fa-times"></i></li>
-                  </ul>
-                  <i className='fas fa-plus-circle fa-2x float-right wbdv-add-module'/>
-              </div>
-        <div className='col-8'>
-          <div className='wbdv-tabs-bar'>
-            <ul className='nav nav-tabs'>
-              <li className='nav-item'>
-                <button className='btn nav-link'>Build</button>
-              </li>
-              <li className='nav-item'>
-                <button className='btn nav-link active'>Pages</button>
-              </li>
-              <li className='nav-item'>
-                <button className='btn nav-link'>Theme</button>
-              </li>
-              <li className='nav-item'>
-                <button className='btn nav-link'>Store</button>
-              </li>
-              <li className='nav-item'>
-                <button className='btn nav-link'>Apps</button>
-              </li>
-              <li className='nav-item'>
-                <button className='btn nav-link'>Settings</button>
-              </li>
-              <li className='nav-item'>
-                <button className='btn nav-link'>+</button>
-              </li>
-            </ul>
+    <Provider store={store}>
+      <div>
+        <h1>
+          <Link to={`/courses/${layout}`}>
+            <i className='fas fa-times wbdv-return-from-editor'/>
+          </Link>
+        {courseTitle}
+        </h1>
+        <div className='row'>
+          <div className='col-4'>
+            <ModuleList/>
           </div>
-
-        <div class="col-8 px-4 py-4">
-            <ul class="nav nav-pills nav-fill">
-                <li class="nav-item editor-topics">
-                    <a class="nav-link active bg-dark" href="#">Topic 1</a>
-                </li>
-                <li class="nav-item editor-topics">
-                    <a class="nav-link" href="#">Topic 2</a>
-                </li>
-                <li class="nav-item editor-topics">
-                    <a class="nav-link" href="#">Topic 3</a>
-                </li>
-                <a href="#" class="btn btn-dark editor-topics"><i class="fas fa-plus"></i></a>
-            </ul>
-        </div>
+          <div className='col-8'>
+            {<LessonTabs/>}
+            <br/>
+            {<TopicPills/>}
+          </div>
         </div>
       </div>
-    </div>
-  )
-}
+    </Provider>)}
 
-export default CourseEditor;
+export default CourseEditor
