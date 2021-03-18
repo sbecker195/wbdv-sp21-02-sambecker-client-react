@@ -39,7 +39,7 @@ const widgetService = {
     createWidget,
     findWidgetsForTopic,
     findAllWidgets,
-    finaWidgetById,
+    findWidgetById,
     updateWidget,
     deleteWidget
 }
