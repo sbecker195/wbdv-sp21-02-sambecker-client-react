@@ -3,61 +3,96 @@ import HeadingWidget from "./heading-widget";
 import ParagraphWidget from "./paragraph-widget";
 import {useParams} from "react-router-dom";
 import widgetService from '../../services/widget-service';
+import {connect} from 'react-redux'
 
 const WidgetList = (
     {
+        widgets = [],
         createWidget,
         findWidgetsForTopic,
         findAllWidgets,
-        findWidgetById,
         updateWidget,
         deleteWidget
     }
 
 ) => {
     const {topicId} = useParams();
-    const [widgets, setWidgets] = useState([])
-    const [editingWidget, setEditingWidget] = useState({});
 
-    return(
+    useEffect(() => {
+        findWidgetsForTopic(topicId)
+    }, [topicId])
+
+    return (
         <div>
-            <i onClick={createWidget} className="fas fa-plus fa-2x float-right"></i>
-            <h2>Widget List ({widgets.length}) {editingWidget.id}</h2>
+            <i onClick={() => createWidget(topicId)} className="fas fa-plus fa-2x wbdv-add float-right"></i>
             <ul className="list-group">
                 {
                     widgets.map(widget =>
                     <li className="list-group-item" key={widget.id}>
                         {
-                            editingWidget.id === widget.id &&
-                                <>
-                                    <i onClick={() => {
-                                        updateWidget(widget.id, editingWidget)
-                                    }} className="fas fa-2x fa-check float-right"></i>
-                                    <i onClick={() => deleteWidget(widget.id)} className="fas fa-2x fa-trash float-right"></i>
-                                </>
-                        }
-                        {
-                            editingWidget.id !== widget.id &&
-                            <i onClick={() => setEditingWidget(widget)} className="fas fa-2x fa-cog float-right"></i>
-                        }
-                        {
                             widget.type === "HEADING" &&
                             <HeadingWidget
-                                editing={editingWidget.id === widget.id}
+                                updateWidget={updateWidget}
+                                deleteWidget={deleteWidget}
                                 widget={widget}/>
                         }
                         {
                             widget.type === "PARAGRAPH" &&
                             <ParagraphWidget
-                                editing={editingWidget.id === widget.id}
+                                updateWidget={updateWidget}
+                                deleteWidget={deleteWidget}
                                 widget={widget}/>
                         }
                     </li>
                     )
                 }
             </ul>
-            {JSON.stringify(widgets)}
         </div>
     )
 }
-export default WidgetList;
+
+const stpm = (state) => ({
+        widgets: state.widgetReducer.widgets
+})
+
+const dtpm = (dispatch) => ({
+    createWidget: (topicId) => {
+        const newWidget = {type: "HEADING", size: 1, text: "New Widget"};
+        widgetService.createWidget(topicId, newWidget)
+            .then(widget => dispatch({
+                type: "CREATE_WIDGET",
+                widget: widget
+            }))
+    },
+    findWidgetsForTopic: (topicId) => {
+        widgetService.findWidgetsForTopic(topicId)
+            .then(theWidgets => dispatch({
+                type: "FIND_WIDGETS_FOR_TOPIC",
+                widgets: theWidgets
+            }))
+    },
+    findAllWidgets: () => {
+        widgetService.findAllWidgets()
+            .then(widgets => dispatch({
+                type: "FIND_ALL_WIDGETS",
+                widgets: widgets
+            }))
+    },
+    updateWidget: (widgetId, widgetToUpdate) => {
+        widgetService.updateWidget(widgetId, widgetToUpdate)
+            .then(widget => dispatch({
+                id: widgetId,
+                type: "UPDATE_WIDGET",
+                widget: widgetToUpdate,
+            }))
+    },
+    deleteWidget: (widget) => {
+        widgetService.deleteWidget(widget)
+            .then(status => dispatch({
+                type: 'DELETE_WIDGET',
+                widgetToDelete: widget
+            }))
+    }
+})
+
+export default connect(stpm, dtpm)(WidgetList)
