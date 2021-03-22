@@ -67,7 +67,7 @@ const dtpm = (dispatch) => ({
     findWidgetsForTopic: (topicId) => {
         widgetService.findWidgetsForTopic(topicId)
             .then(theWidgets => dispatch({
-                type: "FIND_WIDGETS_FOR_TOPIC",
+                type: "FIND_ALL_WIDGETS_FOR_TOPIC",
                 widgets: theWidgets
             }))
     },

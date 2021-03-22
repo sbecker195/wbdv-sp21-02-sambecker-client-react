@@ -1,4 +1,5 @@
 const WIDGET_URL = 'https://cs5610-sp21-server-becker-sam.herokuapp.com/api';
+// const WIDGET_URL = 'http://localhost:8080/api'
 
 export const createWidget = (tid, widget) =>
   fetch(`${WIDGET_URL}/topics/${tid}/widgets`, {
