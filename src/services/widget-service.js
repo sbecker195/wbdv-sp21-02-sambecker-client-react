@@ -1,15 +1,20 @@
-const WIDGET_URL = process.env.REACT_APP_WIDGET_URL
-//const WIDGET_URL = 'https://cs5610-sp21-server-becker-sam.herokuapp.com/api';
+//const WIDGET_URL = process.env.REACT_APP_WIDGET_URL
+const WIDGET_URL = 'https://cs5610-sp21-server-becker-sam.herokuapp.com/api';
 //const WIDGET_URL = 'http://localhost:8080/api'
 
-export const createWidget = (tid, widget) =>
-  fetch(`${WIDGET_URL}/topics/${tid}/widgets`, {
-    method: 'POST',
-    body: JSON.stringify(widget),
-    headers: {
-      'content-type': 'application/json'
-    }
-  }).then(response => response.json())
+export const createWidget = (tid, widget) => {
+    console.log(`${WIDGET_URL}/topics/${tid}/widgets`)
+    return fetch(`${WIDGET_URL}/topics/${tid}/widgets`, {
+        method: "POST",
+        body: JSON.stringify(widget),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => {
+            return response.json()
+        })
+}
 
 export const findWidgetsForTopic = (tid) =>
   fetch(`${WIDGET_URL}/topics/${tid}/widgets`)
