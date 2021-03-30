@@ -28,12 +28,12 @@ const ParagraphWidget = ({widget, updateWidget, deleteWidget}) => {
                                     type: e.target.value
                                 })
                             }>
-                        <option value={"HEADING"}disabled>Heading</option>
-                        <option value={"PARAGRAPH"}disabled>Paragraph</option>
+                        <option value={"HEADING"}>Heading</option>
+                        <option value={"PARAGRAPH"}>Paragraph</option>
+                        <option value={"LIST"}>List</option>
+                        <option value={"IMAGE"}>Image</option>
                         <option value={"VIDEO"}disabled>Video</option>
-                        <option value={"IMAGE"}disabled>Image</option>
                         <option value={"LINK"}disabled>Link</option>
-                        <option value={"LIST"}disabled>List</option>
                         <option value={"HTML"}disabled>HTML</option>
                     </select>
                     <br>

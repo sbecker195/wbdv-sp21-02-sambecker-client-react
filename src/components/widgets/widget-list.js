@@ -43,6 +43,18 @@ const WidgetList = (
                                 deleteWidget={deleteWidget}
                                 widget={widget}/>
                         }
+                            widget.type === "LIST" &&
+                            <ListWidget
+                                updateWidget={updateWidget}
+                                deleteWidget={deleteWidget}
+                                widget={widget}/>
+                        }
+                            widget.type === "IMAGE" &&
+                            <ImageWidget
+                                updateWidget={updateWidget}
+                                deleteWidget={deleteWidget}
+                                widget={widget}/>
+                        }
                     </li>
                     )
                 }
