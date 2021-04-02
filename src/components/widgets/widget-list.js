@@ -73,34 +73,34 @@ const WidgetList = (
                         {
                             widget.type === "HEADING" &&
                             <HeadingWidget
-                                widget={widget}/>
+                                widget={widget}
                                 editing={widget.id === cachedWidget.id}
                                 cachedWidget={cachedWidget}
-                                setWidget={setCachedWidget}
+                                setWidget={setCachedWidget}/>
                         }
                         {
                             widget.type === "PARAGRAPH" &&
                             <ParagraphWidget
-                                widget={widget}/>
+                                widget={widget}
                                 editing={widget.id === cachedWidget.id}
                                 cachedWidget={cachedWidget}
-                                setWidget={setCachedWidget}
+                                setWidget={setCachedWidget}/>
                         }
                         {
                             widget.type === "LIST" &&
                             <ListWidget
-                                widget={widget}/>
+                                widget={widget}
                                 editing={widget.id === cachedWidget.id}
                                 cachedWidget={cachedWidget}
-                                setWidget={setCachedWidget}
+                                setWidget={setCachedWidget}/>
                         }
                         {
                             widget.type === "IMAGE" &&
                             <ImageWidget
-                                widget={widget}/>
+                                widget={widget}
                                 editing={widget.id === cachedWidget.id}
                                 cachedWidget={cachedWidget}
-                                setWidget={setCachedWidget}
+                                setWidget={setCachedWidget}/>
                         }
                     </li>
                     )
