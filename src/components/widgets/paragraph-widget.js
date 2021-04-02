@@ -1,65 +1,27 @@
 import React, {useState} from 'react'
 
-const ParagraphWidget = ({widget, updateWidget, deleteWidget}) => {
-    const [editing, setEditing] = useState(false)
-    const [cachedWidget, setCachedWidget] = useState(widget)
+const ParagraphWidget = ({widget, editing, cachedWidget, setWidget}) => {
     return (
-        <>
+        <div>
             {
                 editing &&
-                <>
-                    <i className="fas fa-check wbdv-save-btn float-right"
-                       onClick={() => {
-                        updateWidget(widget.id, cachedWidget)
-                        setEditing(false)
+                <div>
+                    <br/>
+                    <textarea className="col-sm-10 form-control"
+                        onChange={(e) => setWidget({
+                            ...widget,
+                            text: e.target.value})
                         }
-                    }></i>
-                    <i className="fas fa-trash wbdv-delete-btn float-right"
-                       onClick={() => {
-                        deleteWidget(widget.id)
-                        setEditing(false)
-                        }
-                    }></i>
-                    <select className="col-sm-10 form-control"
-                            value ={cachedWidget.type}
-                            onChange={(e) =>
-                                setCachedWidget({
-                                    ...cachedWidget,
-                                    type: e.target.value
-                                })
-                            }>
-                        <option value={"HEADING"}>Heading</option>
-                        <option value={"PARAGRAPH"}>Paragraph</option>
-                        <option value={"LIST"}>List</option>
-                        <option value={"IMAGE"}>Image</option>
-                        <option value={"VIDEO"}disabled>Video</option>
-                        <option value={"LINK"}disabled>Link</option>
-                        <option value={"HTML"}disabled>HTML</option>
-                    </select>
-                    <br>
-                    </br>
-                    <textarea
-                        className="col-sm-10 form-control"
-                        value={cachedWidget.text}
-                        onChange={(e) =>
-                            setCachedWidget({
-                                ...cachedWidget,
-                                text: e.target.value
-                            })
-                        }
-                    ></textarea>
-                </>
+                        value={cachedWidget.text}></textarea>
+                </div>
             }
             {
                 !editing &&
                 <p>
-                    <i className="fas fa-cog float-right"
-                       onClick={() => setEditing(true)}>
-                    </i>
-                    {cachedWidget.text}
+                    {widget.text}
                 </p>
             }
-        </>
+        </div>
     )
 }
 
