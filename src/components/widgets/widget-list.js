@@ -117,7 +117,7 @@ const stpm = (state) => ({
 const dtpm = (dispatch) => ({
     createWidget: (topicId) => {
         const newWidget = {type: "HEADING", size: 1, text: "New Widget", height: 0, width: 0,
-            url: '', isOrdered: false};
+            src: '', isOrdered: false};
         widgetService.createWidget(topicId, newWidget)
             .then(widget => dispatch({
                 type: "CREATE_WIDGET",
