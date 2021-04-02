@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import HeadingWidget from "./heading-widget";
 import ParagraphWidget from "./paragraph-widget";
+import ImageWidget from "./image-widget";
+import ListWidget from "./list-widget";
 import {useParams} from "react-router-dom";
 import widgetService from '../../services/widget-service';
 import {connect} from 'react-redux'
@@ -17,7 +19,8 @@ const WidgetList = (
 
 ) => {
     const {topicId} = useParams();
-
+    const [cachedWidget, setCachedWidget] = useState({});
+    // console.log(topicId);
     useEffect(() => {
         findWidgetsForTopic(topicId)
     }, [topicId])
@@ -30,30 +33,74 @@ const WidgetList = (
                     widgets.map(widget =>
                     <li className="list-group-item" key={widget.id}>
                         {
+                            widget.id  !== cachedWidget.id &&
+                            <i className="fas fa-cog float-right"
+                                onClick={() =>
+                                    setCachedWidget(widget)}></i>
+                        }
+                        {
+                            widget.id === cachedWidget.id &&
+                            <>
+                                <i className="fas fa-check wbdv-save-btn float-right"
+                                    onClick={() => {
+                                    updateWidget(widget.id, cachedWidget)
+                                    setCachedWidget({})
+                                        }
+                                    }></i>
+                                <i className="fas fa-trash wbdv-delete-btn float-right"
+                                    onClick={() => deleteWidget(widget.id)
+                                    }></i>
+                                <select className="col-sm-10 form-control"
+                                        value={cachedWidget.type}
+                                        onChange={(e) => {
+                                        setCachedWidget(widget => ({
+                                            ...widget,
+                                            type: e.target.value}
+                                            ))
+                                        widget.type = e.target.value}
+                                        }
+                                    >
+                                    <option value={"HEADING"}>Heading</option>
+                                    <option value={"PARAGRAPH"}>Paragraph</option>
+                                    <option value={"LIST"}>List</option>
+                                    <option value={"IMAGE"}>Image</option>
+                                    <option value={"VIDEO"}disabled>Video</option>
+                                    <option value={"LINK"}disabled>Link</option>
+                                    <option value={"HTML"}disabled>HTML</option>
+                                </select>
+                            </>
+                        }
+                        {
                             widget.type === "HEADING" &&
                             <HeadingWidget
-                                updateWidget={updateWidget}
-                                deleteWidget={deleteWidget}
                                 widget={widget}/>
+                                editing={widget.id === cachedWidget.id}
+                                cachedWidget={cachedWidget}
+                                setWidget={setCachedWidget}
                         }
                         {
                             widget.type === "PARAGRAPH" &&
                             <ParagraphWidget
-                                updateWidget={updateWidget}
-                                deleteWidget={deleteWidget}
                                 widget={widget}/>
+                                editing={widget.id === cachedWidget.id}
+                                cachedWidget={cachedWidget}
+                                setWidget={setCachedWidget}
                         }
+                        {
                             widget.type === "LIST" &&
                             <ListWidget
-                                updateWidget={updateWidget}
-                                deleteWidget={deleteWidget}
                                 widget={widget}/>
+                                editing={widget.id === cachedWidget.id}
+                                cachedWidget={cachedWidget}
+                                setWidget={setCachedWidget}
                         }
+                        {
                             widget.type === "IMAGE" &&
                             <ImageWidget
-                                updateWidget={updateWidget}
-                                deleteWidget={deleteWidget}
                                 widget={widget}/>
+                                editing={widget.id === cachedWidget.id}
+                                cachedWidget={cachedWidget}
+                                setWidget={setCachedWidget}
                         }
                     </li>
                     )
@@ -69,7 +116,8 @@ const stpm = (state) => ({
 
 const dtpm = (dispatch) => ({
     createWidget: (topicId) => {
-        const newWidget = {type: "HEADING", size: 1, text: "New Widget"};
+        const newWidget = {type: "HEADING", size: 1, text: "New Widget", height: 0, width: 0,
+            url: '', isOrdered: false};
         widgetService.createWidget(topicId, newWidget)
             .then(widget => dispatch({
                 type: "CREATE_WIDGET",
