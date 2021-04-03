@@ -22,7 +22,9 @@ const WidgetList = (
     const [cachedWidget, setCachedWidget] = useState({});
     // console.log(topicId);
     useEffect(() => {
-        findWidgetsForTopic(topicId)
+        if (topicId !== 'undefined' && typeof topicId !== 'undefined') {
+            findWidgetsForTopic(topicId)
+            }
     }, [topicId])
 
     return (
