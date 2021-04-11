@@ -15,6 +15,7 @@ class CourseTable
             <th>Title</th>
                 <th className='d-none d-md-table-cell'>Owned By</th>
             <th className='d-none d-lg-table-cell'>Last Modified</th>
+            <th>Quizzes</th>
             <th>
               <div className='float-right'>
                 <i className='fas fa-folder mr-2 fa-2x'/>

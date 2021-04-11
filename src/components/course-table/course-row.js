@@ -35,6 +35,9 @@ class CourseRow extends React.Component {
         </td>
         <td className='d-none d-md-table-cell'>{this.props.course.owner}</td>
         <td className='d-none d-lg-table-cell'>{this.props.course.modified}</td>
+        <Link to={`/courses/${this.props.course._id}/quizzes`}>
+            Quizzes
+        </Link>
         <td className='text-right'>
           { this.state.editing &&
             <i className='wbdv-clickable fas fa-check wbdv-save-btn'

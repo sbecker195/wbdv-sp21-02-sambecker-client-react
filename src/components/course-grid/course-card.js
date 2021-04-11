@@ -30,7 +30,11 @@ const CourseCard = ({updateCourse, deleteCourse, course}) => {
                              value={newTitle}
                              className='form-control'
           />}
-          <p className="card-text">Course description here</p>
+          <p>
+            <Link to={`/courses/${course._id}/quizzes`}>
+                Quizzes
+            </Link>
+           </p>
           <Link to={`/courses/grid/edit/${course._id}`} className="btn btn-primary">
             {course.title}
           </Link>
