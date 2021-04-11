@@ -6,7 +6,7 @@ import {Route, Link} from 'react-router-dom';
 import courseService from "../services/course-service";
 import CourseManagerBar from './course-manager-header.js';
 import Quiz from './quizzes/quiz';
-import Quizzes from './quizzes/quizzes';
+import QuizzesList from './quizzes/quizzes-list';
 
 class CourseManager extends React.Component {
   state = {
@@ -98,7 +98,7 @@ class CourseManager extends React.Component {
                        render={(props) => <CourseEditor {...props}/>}/>
         <Route path='/courses/:courseId/quizzes'
             exact={true}>
-          <Quizzes/>
+          <QuizzesList/>
         </Route>
         <Route path='/courses/:courseId/quizzes/:quizId'
             exact={true}>
