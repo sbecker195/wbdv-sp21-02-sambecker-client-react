@@ -42,3 +42,10 @@
 .wbdv-add {
     color: #00008B;
 }
+
+.bullet-left-padding {
+    position: absolute;
+    left: 40px;
+}
+
+
