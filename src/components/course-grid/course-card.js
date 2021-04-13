@@ -23,7 +23,7 @@ const CourseCard = ({updateCourse, deleteCourse, course}) => {
   return (
     <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
       <div className="card">
-        <img src="http://codemen.com/wp-content/uploads/2016/09/ReactJS.png" className="card-img-top" alt="..."/>
+        <img src="https://lh3.googleusercontent.com/proxy/Ph3cExBPGDgE_BbmmFZ_gcc84td2o6iRYvzcF0j0XhbRy8iJZhVd7YpbKjtK8uqYlG6wrUG_XPfIb-HDJm-AxECZ-77xvg4QjQ5EkwE5QUX6" className="card-img-top" alt="..."/>
         <div className="card-body">
           { !editing && <h4 className="card-title">{course.title}</h4>}
           { editing && <input onChange={event}
