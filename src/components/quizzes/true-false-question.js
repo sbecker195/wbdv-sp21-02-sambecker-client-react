@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import MultipleChoiceQuestion from './multiple-choice-question';
 
 const TrueFalseQuestion = ({question}) => {
    const [answer, setAnswer] = useState('');
