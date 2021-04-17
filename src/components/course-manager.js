@@ -7,6 +7,7 @@ import courseService from "../services/course-service";
 import CourseManagerBar from './course-manager-header.js';
 import Quiz from './quizzes/quiz';
 import QuizzesList from './quizzes/quizzes-list';
+import QuizAttempts from './quizzes/quiz-attempts';
 
 class CourseManager extends React.Component {
   state = {
@@ -103,6 +104,9 @@ class CourseManager extends React.Component {
         <Route path='/courses/:courseId/quizzes/:quizId'
             exact={true}>
           <Quiz/>
+        </Route>
+        <Route path='/courses/:courseId/quizzes/:quizId/attempts' exact={true}>
+            <QuizAttempts/>
         </Route>
       </div>
     )
