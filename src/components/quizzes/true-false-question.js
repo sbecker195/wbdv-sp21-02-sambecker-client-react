@@ -1,10 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
-const TrueFalseQuestion = ({question}) => {
+const TrueFalseQuestion = ({question, setQuestions, questions, graded}) => {
    const [answer, setAnswer] = useState('');
-   const [graded, setGraded] = useState(false);
 
    const choices = ['true', 'false'];
+
+    useEffect(() => {
+        if (graded) {
+            const currentQuestion = questions.find(q =>
+                q._id === question._id);
+            currentQuestion.answer = answer;
+            const otherQuestions = questions.filter(q =>
+                q._id !== question._id);
+            const newQuestion = [...otherQuestions, currentQuestion];
+            setQuestions(newQuestion);
+        }
+    }, [graded])
 
    return (
      <div className='p-3 border'>
@@ -60,18 +71,8 @@ const TrueFalseQuestion = ({question}) => {
            </div>
            <br>
            </br>
-           <div>
-             <div>
-               <button className='btn btn-success'
-                       onClick={() =>
-                            setGraded(true)}
-                       disabled={graded}>
-                       Grade
-               </button>
-             </div>
-           </div>
      </div>
   )
 }
 
-export default TrueFalseQuestion;
+export default TrueFalseQuestion

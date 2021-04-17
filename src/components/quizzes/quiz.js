@@ -9,12 +9,19 @@ const Quiz = () => {
   const [questions, setQuestions] = useState([]);
   const [quiz, setQuiz] = useState({});
 
+  const [graded, setGraded] = useState(false)
+  const [attempts, setAttempts] = useState({})
+
   useEffect(() => {
     QuestionService.findQuestionsForQuiz(quizId)
       .then(res => setQuestions(res));
     QuizService.findQuizById(quizId)
       .then(res => setQuiz(res));
-  }, [quizId])
+    if (graded) {
+      QuizService.submitQuiz(quiz._id, questions)
+          .then(res => setAttempts(res));
+    }
+  }, [quizId, graded])
 
   return (
     <div className='container-fluid'>
@@ -26,12 +33,34 @@ const Quiz = () => {
         {
           questions.map(question =>
           <div key={question._id}>
-            <Question question={question}/>
+            <Question question={question}
+                      setQuestions={setQuestions}
+                      questions={questions}
+                      graded={graded}/>
           </div>
           )
         }
+        <div>
+          <button onClick={() => setGraded(true)}
+                  disabled={graded}
+                  className='btn btn-success'>
+            Grade
+          </button>
+          <div>
+          <br>
+          </br>
+          </div>
+          {
+            graded &&
+            <div>
+              <Link className='btn btn-success'
+                    to={`/courses/${courseId}/quizzes/${quizId}/attempts`}>
+                View Attempts
+              </Link>
+            </div>
+          }
+        </div>
     </div>
-
   )
 }
 
