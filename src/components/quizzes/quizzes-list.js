@@ -28,7 +28,7 @@ const QuizzesList = () => {
                 {quiz.title}
             </Link>
             <Link className='btn btn-success float-right'
-                  to={`/courses/${courseId}/quizzes/${quiz._id}/attempts`}>Attempts</Link>
+                  to={`/courses/${courseId}/quizzes/${quiz._id}/attempts`}>View Attempts</Link>
             <Link to={`/courses/${courseId}/quizzes/${quiz._id}`}
                 className='float-right btn btn-primary'>
                 Start
