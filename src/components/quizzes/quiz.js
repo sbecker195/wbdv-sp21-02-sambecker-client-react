@@ -40,24 +40,20 @@ const Quiz = () => {
           </div>
           )
         }
+        <br></br>
         <div>
           <button onClick={() => setGraded(true)}
                   disabled={graded}
                   className='btn btn-success'>
             Grade
           </button>
-          <div>
-          <br>
-          </br>
-          </div>
           {
             graded &&
-            <div>
-              <Link className='btn btn-success'
-                    to={`/courses/${courseId}/quizzes/${quizId}/attempts`}>
-                View Attempts
-              </Link>
-            </div>
+            <Link className='btn btn-success float-right'
+                  to={`/courses/${courseId}/quizzes/${quizId}/attempts`}>
+              View Attempts
+            </Link>
+
           }
         </div>
     </div>
