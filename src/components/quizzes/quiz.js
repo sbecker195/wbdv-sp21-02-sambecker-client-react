@@ -53,7 +53,10 @@ const Quiz = () => {
                   to={`/courses/${courseId}/quizzes/${quizId}/attempts`}>
               View Attempts
             </Link>
-
+          }
+          {
+            graded &&
+            <h5>Score: {attempts.score}</h5>
           }
         </div>
     </div>
